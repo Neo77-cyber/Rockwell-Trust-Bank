@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{%static '/styles/login.css' %}" />
+    <title> Rockwell Trust Bank Login</title>
+  </head>
+  <body>
+    <!-- HERO SECTION -->
+    <section class="login-hero">
+        <div>
+            <div class="wave-1"></div>
+            <div class="wave-1"></div>
+            <div class="wave-1"></div>
+          </div>
+      <div class="hero-text">
+        <form id="login-form" action="" method="POST">
+          {%csrf_token%}
+            <p class="logo">Rockwell Trust Bank</p>
+        <p class="hero-light-text">Please enter your credentials to log in.</p>
+
+          <div class="input-group">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Enter your username"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter your password"
+              required
+            />
+            <span class="forgot-password">
+              <a href="#">
+                Forgot your password?
+              </a>
+            </span>
+          </div>
+          <!-- <div class="input-group">
+            <input type="checkbox" id="remember" name="remember" />
+            <label for="remember">Remember me</label>
+          </div> -->
+          <div class="input-group">
+            <button type="submit" id="login-button">Log In</button>
+          </div>
+        </form>
+
+        <!-- <p class="info-text">
+          <span>Don't have an account? </span>
+          <a href="./register.html">Sign Up</a>
+        </p> -->
+      </div>
+    </section>
+
+  </body>
+</html>

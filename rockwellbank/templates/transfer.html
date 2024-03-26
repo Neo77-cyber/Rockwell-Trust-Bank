@@ -1,0 +1,165 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rockwell Trust Bank Transfer</title>
+    <link rel="stylesheet" href="{%static 'styles/dashboard.css' %}" />
+  <link rel="stylesheet" href="{%static 'styles/transfer-form.css' %}">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  </head>
+  <body>
+    <div class="dashboard-container">
+
+    <div class="mobile-header">
+      <button class="menu-btn">&#9776;</button>
+      
+      <div class="profile-picture">
+      </div>
+      
+    </div>
+    <div class="overlay"></div>
+    <div class="sidebar">
+      <div class="sidebar-in-container">
+        <div class="logo">
+          
+          <h2>Rockwell Trust Bank</h2>
+        </div>
+        <nav>
+          <ul>
+            <li>
+              <a href="{% url 'portfolio' %}" class="nav-link" data-content="dashboard">
+                <i class="fa-solid fa-house"></i>Dashboard
+              </a>
+            </li>
+            
+            <li>
+              <a href="{% url 'profile' %}" class="nav-link" data-content="profile"><i class="fa-solid fa-user"></i>Profile</a>
+            </li>
+
+            <li>
+              <li>
+                  <a href="{% url 'transfer' %}" class="nav-link" data-content="transfer"><i class="fa-solid fa-paper-plane"></i>Transfer</a>
+                </li>
+            <li>
+                <a href="{% url 'FAQ' %}" class="nav-link" data-content="help-and-support"><i class="fa-solid fa-question"></i>Support</a>
+              </li>
+                
+                <li>
+              <a href="{% url 'logout' %}" class="nav-link" data-content="logout"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="sidebar-footer">
+          <p>&copy; All Rights Reserved. Rockwell Trust Bank</p>
+        </div>
+        <div>
+          <div class="wave-1"></div>
+          <div class="wave-1"></div>
+          <div class="wave-1"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <header>
+        <div class="banking">
+          <h2>Banking</h2>
+          <p>Welcome to Rockwell Trust Bank Dashboard</p>
+        </div>
+        <div class="profile-picture">
+        </div>
+      </header>
+      <main>
+        <div id="profile" class="content-section show">
+            <div class="container">
+                <h1>Transfer Details</h1>
+                
+                <div id="message-container" style="padding: 10px; ">
+                  {% for message in messages %}
+                    <h4 style="color: red;">{{ message }}</h4>
+                  {% endfor %}
+                </div>
+                <form id="transferForm" action="{% url 'transfer' %}" method="POST"  >
+                  {%csrf_token%}
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="{{ form.beneficiary_name.id_for_label }}">Beneficiary Name</label>
+                      {{ form.beneficiary_name }}
+                    </div>
+                    <div class="form-group">
+                      <label for="{{ form.account_name.id_for_label }}">Account Name</label>
+                      {{ form.account_name }}
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="{{ form.branch_name.id_for_label }}">Branch Name</label>
+                      {{ form.branch_name }}
+                    </div>
+                    <div class="form-group">
+                      <label for="{{ form.bank_address.id_for_label }}">Bank Address</label>
+                      {{ form.bank_address }}
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="{{ form.account_number.id_for_label }}">Account Number</label>
+                      {{ form.account_number }}
+                    </div>
+                    <div class="form-group">
+                      <label for="{{ form.account_type.id_for_label }}">Account Type</label>
+                      {{ form.account_type }}
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="{{ form.amount_to_transfer.id_for_label }}">Amount to Transfer</label>
+                      {{ form.amount_to_transfer }}
+                    </div>
+                    <div class="form-group">
+                      <label for="{{ form.beneficiary_email.id_for_label }}">Beneficiary Email</label>
+                      {{ form.beneficiary_email }}
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="{{ form.beneficiary_phone_number.id_for_label }}">Beneficiary Phone Number</label>
+                      {{ form.beneficiary_phone_number }}
+                    </div>
+                    <div class="form-group">
+                      <label for="{{ form.bank_swift_code.id_for_label }}">Bank Swift Code</label>
+                      {{ form.bank_swift_code }}
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="{{ form.transfer_pin.id_for_label }}">Transfer PIN</label>
+                      {{ form.transfer_pin }}
+                    </div>
+                  </div>
+                  <button type="submit">Submit</button>
+                </form>
+              </div>
+        </div>
+
+        <!-- <div id="logout" class="content-section hidden">
+          <h2>Logout</h2>
+          <p>This is the logout content.</p>
+        </div> -->
+      </main>
+    </div>
+
+  </div>
+
+
+    <!-- <script src="./js/script.js"></script> -->
+  </body>
+</html>

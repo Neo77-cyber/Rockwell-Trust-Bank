@@ -1,0 +1,249 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{%static 'styles/style.css' %}" />
+     <!-- Favicons -->
+     <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Rockwell Trust Bank</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">Rockwell Trust Bank</div>
+      
+      <ul class="nav-links">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#overview">Features</a></li>
+        <li><a href="#integrations">Integration</a></li>
+      </ul>
+      
+
+      <ul class="nav-links">
+        <li>
+          <a href="{% url 'signin' %}" class="get-started-btn">Get started</a>
+        </li>
+      </ul>
+      <div class="hamburger">
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+      </div>
+    </nav>
+
+    <section>
+      <div class="section-1">
+        <h5>All-in-one banking for everybody</h5>
+        <h1>
+          Smart and simple <br />
+          online banking
+        </h1>
+        <p>
+          With our secure online banking services, you can manage your finances
+          from anywhere, at any time.
+        </p>
+
+        <form action="#" class="track-form">
+          <div class="input-group">
+            <input
+              class="track-input"
+              type="text"
+              id="tracking-number"
+              name="tracking-number"
+              placeholder="Enter your email"
+              required
+            />
+            <button class="track-btn" type="submit">Sign Up</button>
+          </div>
+        </form>
+      </div>
+      <div>
+        <div class="wave-1"></div>
+        <div class="wave-1"></div>
+        <div class="wave-1"></div>
+      </div>
+
+      <div class="section-2" id="overview">
+          <div class="wave"></div>
+          <div class="wave"></div>
+          <div class="wave"></div>
+        <h5>Why Rockwell Trsut Bank?</h5>
+        <h2>The only fintech app<br />you’ll ever need</h2>
+        <p>
+          Our online banking platform is user-friendly and easy to navigate.
+        </p>
+
+        <div class="grid-container">
+          <div class="service-card">
+            <div class="circle-1">
+              <div class="circle-2">
+                <i aria-hidden="true" class="far fa-money-bill-alt"></i>
+              </div>
+            </div>
+            <h4>Checking account</h4>
+            <p>
+              Explore Rockwell® / AAdvantage® Credit Cards
+            </p>
+          </div>
+
+          <div class="service-card">
+            <div class="circle-1">
+              <div class="circle-2">
+                <i aria-hidden="true" class="far fa-building"></i>
+              </div>
+            </div>
+            <h4>Savings account</h4>
+            <p>
+              Savings made simple with our most popular savings account
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="circle-1">
+              <div class="circle-2">
+                <i aria-hidden="true" class="far fa-handshake"></i>
+              </div>
+            </div>
+            <h4>Low interest loans</h4>
+            <p>
+              Get Up to $30,000 loan amount,10.49% fixed rate APR1
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="circle-1">
+              <div class="circle-2">
+                <i class="far fa-regular fa-credit-card"></i>
+              </div>
+            </div>
+            <h4>Flexible credit cards</h4>
+            <p>
+              Earn MORE cash back or bonus points
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-3" >
+      <div class="container">
+        <img
+          src="{%static 'images/1561129522341.jpeg' %}"
+          alt="Company Logo"
+        />
+        <div>
+          <p class="testimonial">
+            "I've been using Rokwell for over a year now, and it has completely
+            changed the way I manage my finances. It's so easy to use and has
+            helped me save time and stay on top of my accounts. Highly
+            recommend!"
+          </p>
+          <p class="author">Jacob Jones, CEO @ Penta</p>
+        </div>
+      </div>
+
+      <div class="container-2" id="integrations">
+        <div class="left-side">
+          <div class="left-side-card">
+            <img src="{%static 'images/Online-Banking-Wallet-Image-1.webp' %}" alt="" />
+            <p class="payments-description">
+              Make secure payments in stores, online, and in apps with just a
+              touch of your Apple device.
+            </p>
+          </div>
+          <div class="left-side-card">
+            <img src="{%static 'images/Online-Banking-Wallet-Image-2.webp' %}" alt="" />
+            <p class="payments-description">
+              Easily link your PayPal account to your online banking for
+              seamless and secure online payments.
+            </p>
+          </div>
+          <div class="left-side-card">
+            <img src="{%static 'images/Online-Banking-Wallet-Image-3.webp' %}" alt="" />
+            <p class="payments-description">
+              Accept payments from customers around the world directly from your
+              online banking platform.
+            </p>
+          </div>
+          <div class="left-side-card">
+            <img src="{%static 'images/Online-Banking-Wallet-Image-4.webp' %}" alt="" />
+            <p class="payments-description">
+              Easily and securely transfer funds to over 70 countries around the
+              world at competitive rates.
+            </p>
+          </div>
+        </div>
+        <div class="right-side">
+          <div class="circle-1">
+            <div class="circle-2">
+              <i aria-hidden="true" class="far fa-money-bill-alt"></i>
+            </div>
+          </div>
+          <h2>Wallet Integrations</h2>
+          <p>
+            Whether you're at home, at work, or on the go, our online banking
+            platform is accessible from your computer, tablet, or mobile device.
+            With our mobile banking app, you can even deposit checks and manage
+            your accounts on the go.
+          </p>
+          <button>Learn More</button>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-container">
+        <div class="contact-info">
+          <p class="contact-title">Contact Information</p>
+          <div class="contact-details">
+            <p><span class="label">Email:</span> hello@finflow.com</p>
+            <p>   
+            </p>
+          </div>
+        </div>
+
+        <div class="button-container">
+          <a>Product</a>
+          <a>Company</a>
+          <a>Resources</a>
+          <a>Social</a>
+          <a>Legal</button>
+        </div>
+
+        <header class="banner">
+          <img src=""  />
+          <div class="copyright">
+            <p>© All Rights Reserved. Rockwell Trust Bank</p>
+          </div>
+        </header>
+      </div>
+    </footer>
+
+    <script>
+      const navbar = document.querySelector(".navbar"); // For sticky behavior
+
+      // Navigation bar sticky behavior
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add("sticky");
+        } else {
+          navbar.classList.remove("sticky");
+        }
+      });
+
+      // MENU HAMBURGER
+      const hamburger = document.querySelector(".hamburger");
+
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("open");
+        document.querySelector(".nav-links").classList.toggle("open");
+      });
+    </script>
+  </body>
+</html>
