@@ -18,36 +18,7 @@ overlay.addEventListener("click", () => {
 
 
 
-// this is to go to other parts of the page like profile, support etc
-navLinks.forEach((link) => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
-    const contentId = e.target.dataset.content;
-    let url;
 
-    switch (contentId) {
-      case "dashboard":
-        url = "dashboard.html";
-        break;
-      case "profile":
-        url = "profile.html";
-        break;
-      case "help-and-support":
-        url = "help-and-support.html";
-        break;
-      case "transfer":
-        url = "transfer.html";
-        break;
-      case "logout":
-        url = "logout.html";
-        break;
-      default:
-        url = "index.html";
-    }
-
-    window.location.href = url;
-  });
-});
 
 // toggle amount(balance) view
 const balanceAmount = document.getElementById("balance-amount");

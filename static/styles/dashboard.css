@@ -184,12 +184,17 @@ header {
 .dashboard {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* 2 columns on desktop */
-  grid-gap: 1rem; /* adjust the gap between divs as needed */
+  grid-gap: 4rem; /* adjust the gap between divs as needed */
 }
 
 .dashboard > div {
   height: fit-content; /* let the height adjust based on content */
 }
+
+.grid-container{
+  gap: 20px;
+  }
+
 .content-section {
   display: none;
 }
@@ -200,6 +205,8 @@ header {
 .mobile-header {
   display: none;
 }
+
+
 
 /* card acct balance */
 .card {
