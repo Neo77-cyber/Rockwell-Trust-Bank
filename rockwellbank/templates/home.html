@@ -21,15 +21,15 @@
       <div class="logo">Rockwell Trust Bank</div>
       
       <ul class="nav-links">
-        <li><a href="#overview">Overview</a></li>
-        <li><a href="#overview">Features</a></li>
-        <li><a href="#integrations">Integration</a></li>
+        <li><a style="text-decoration: none;" href="#overview">Overview</a></li>
+        <li><a style="text-decoration: none;" href="#overview">Features</a></li>
+        <li><a style="text-decoration: none;" href="#integrations">Integration</a></li>
       </ul>
       
 
       <ul class="nav-links">
         <li>
-          <a href="{% url 'signin' %}" class="get-started-btn">Get started</a>
+          <a style="text-decoration: none;" href="{% url 'signin' %}" class="get-started-btn">Get started</a>
         </li>
       </ul>
       <div class="hamburger">
@@ -61,7 +61,8 @@
               placeholder="Enter your email"
               required
             />
-            <button class="track-btn" type="submit">Sign Up</button>
+            
+            <a href="{% url 'signin' %}" class="track-btn" type="submit">Sign In</a>
           </div>
         </form>
       </div>
@@ -202,7 +203,7 @@
         <div class="contact-info">
           <p class="contact-title">Contact Information</p>
           <div class="contact-details">
-            <p><span class="label">Email:</span> hello@finflow.com</p>
+            <p><span class="label">Email:</span> support@rockwelltrustinvestments.com</p>
             <p>   
             </p>
           </div>
@@ -245,5 +246,19 @@
         document.querySelector(".nav-links").classList.toggle("open");
       });
     </script>
+
+    <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+  s1.async=true;
+  s1.src='https://embed.tawk.to/660718a21ec1082f04dcd18d/1hq5rget5';
+  s1.charset='UTF-8';
+  s1.setAttribute('crossorigin','*');
+  s0.parentNode.insertBefore(s1,s0);
+  })();
+  </script>
+  <!--End of Tawk.to Script-->
   </body>
 </html>

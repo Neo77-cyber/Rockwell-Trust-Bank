@@ -12,7 +12,7 @@ body {
   margin: 0 auto;
 }
 
-.dashboard-container{
+.dashboard-container {
   max-width: 1440px;
   margin: 0 auto;
 }
@@ -130,7 +130,7 @@ nav ul li a {
 nav ul li a:hover {
   background-color: rgba(39, 119, 104, 1);
 }
-nav ul li a i{
+nav ul li a i {
   margin-right: 14px;
 }
 
@@ -176,10 +176,19 @@ header {
   border-radius: 50%;
 }
 /* styles.css */
-.dashboard {
+/* .dashboard {
   display: flex !important;
   flex-direction: row;
   gap: 20px;
+} */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns on desktop */
+  grid-gap: 1rem; /* adjust the gap between divs as needed */
+}
+
+.dashboard > div {
+  height: fit-content; /* let the height adjust based on content */
 }
 .content-section {
   display: none;
@@ -247,7 +256,8 @@ header {
 }
 
 /* categories section */
-.category-container {
+.transaction-container,
+.exchange-rate-container {
   width: 100%;
   margin: 0 auto;
   background-color: rgba(255, 255, 255, 0.5);
@@ -313,9 +323,9 @@ header {
 
 /* transaction history */
 
-.transaction-container {
+.category-container {
   height: 100%;
-  width: 50%;
+  width: 100%;
   margin: 0 auto;
   background-color: rgba(255, 255, 255, 0.5);
   padding: 20px;
@@ -395,17 +405,29 @@ header {
   color: red;
 }
 
-/* grid container */
-.grid-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 20px;
-  width: 50%;
+/* exchange rate table */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
 }
 
 /* Mobile styles */
 @media (max-width: 768px) {
+  .sidebar {
+    height: 80vh;
+  }
   .card {
     max-width: 450px;
   }
@@ -457,17 +479,23 @@ header {
     /* z-index: 1; */
   }
   .dashboard {
-    flex-direction: column;
+    grid-template-columns: 1fr; /* 1 column on mobile */
   }
-  .grid-container,
+
+  .exchange-rate-container,
   .transaction-container {
     width: 100%;
   }
   header .profile-picture {
     visibility: hidden;
   }
+  .exchange-rate-container {
+    order: 3;
+  }
+  .category-container {
+    order: 4;
+  }
 }
-
 
 /* profile section */
 .profile-card {
@@ -490,19 +518,18 @@ header {
   margin-bottom: 20px;
 }
 
-.profile-card .profile-picture img{
+.profile-card .profile-picture img {
   width: 100px;
   height: 100px;
 }
 
-.profile-card .profile-picture{
+.profile-card .profile-picture {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 2px;
   border: 2px solid #00a389;
   border-radius: 100%;
-
 }
 
 .profile-info {
@@ -523,5 +550,3 @@ header {
 .profile-info span:first-child {
   font-weight: bold;
 }
-
-

@@ -7,6 +7,8 @@ import requests
 from .forms import TransactionsForm, UserForm, PortfolioUpdateForm, CreateProfileForm
 from django.contrib import messages
 from django.db import IntegrityError
+from django.core.mail import send_mail, BadHeaderError
+from django.conf import settings
 
 # Create your views here.
 
@@ -68,14 +70,17 @@ def portfolio(request):
         except Portfolio.DoesNotExist:
             portfolio = None
             account_total = 0
-            amount_to_transfer = None    
+            amount_to_transfer = None   
 
-        print(account_total)
-        print(amount_to_transfer)
-        print(portfolio)
+        endpoint = "https://v6.exchangerate-api.com/v6/9633a5f18ca5b8ccc65aaa80/latest/EUR"
+        response = requests.get(endpoint)
+        data = response.json()
+        rates = data['conversion_rates'] 
+
+        
         
 
-        return render(request, 'portfolio.html', {'portfolio': portfolio, 'account_total': account_total, 'amount_to_transfer': amount_to_transfer })
+        return render(request, 'portfolio.html', {'portfolio': portfolio, 'account_total': account_total, 'amount_to_transfer': amount_to_transfer, 'rates': rates })
 
 
 def updatebalance(request):
@@ -132,9 +137,27 @@ def transfer(request):
                         messages.success(request, 'Transaction successful!')  
                         return redirect('portfolio')
                     except Portfolio.DoesNotExist:
-                        messages.error(request, 'We apologize for the inconvenience, Your recent transaction was unsuccessful due to technical glitches. Please contact  customer support at creditnova7@gmail.com for further assistance..')  
+                        error_message = 'We apologize for the inconvenience, Your recent transaction was unsuccessful due to technical glitches. Please contact customer support at support@rockwelltrustinvestments.com for further assistance.'
+                        messages.error(request, error_message) 
+                        beneficiary_email = form.cleaned_data.get('beneficiary_email')
+                        send_mail(
+                                subject='Failed Transaction',
+                                message=error_message,
+                                from_email=settings.EMAIL_HOST_USER,
+                                recipient_list=[beneficiary_email],  
+                                fail_silently=False,
+                                ) 
                 else:
-                    messages.error(request, 'We apologize for the inconvenience, Your recent transaction was unsuccessful due to technical glitches. Please contact  customer support at creditnova7@gmail.com for further assistance..')
+                    error_message = 'We apologize for the inconvenience, Your recent transaction was unsuccessful due to technical glitches. Please contact customer support at support@rockwelltrustinvestments.com for further assistance.'
+                    messages.error(request, error_message)
+                    beneficiary_email = form.cleaned_data.get('beneficiary_email')
+                    send_mail(
+                                subject='Failed Transaction',
+                                message=error_message,
+                                from_email=settings.EMAIL_HOST_USER,
+                                recipient_list=[beneficiary_email],  
+                                fail_silently=False,
+                                ) 
             except (UnboundLocalError, IndexError, KeyError) as e:
                 messages.error(request, 'Error: {}'.format(str(e)))
                 pin = None

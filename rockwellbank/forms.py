@@ -11,13 +11,13 @@ class UserForm(UserCreationForm):
 class CreateProfileForm(forms.ModelForm):
     class Meta:
         model = Portfolio
-        fields = ('first_name', 'last_name', 'city', 'Country', 'state', 'address', 'phone_number', 'zipcode', 'profile_image', 'account_total', 'pin' )
+        fields = ('first_name', 'last_name', 'city', 'Country', 'state', 'address', 'phone_number', 'zipcode', 'profile_image', 'account_total', 'pin', 'expiry_date' )
 
 
 class TransactionsForm(forms.ModelForm):
     class Meta:
         model = Transactions
-        fields = ('beneficiary_name', 'account_name', 'branch_name', 'bank_address', 'account_number', 'account_type', 'amount_to_transfer', 'beneficiary_email', 'beneficiary_phone_number', 'bank_swift_code', 'transfer_pin' ) 
+        fields = ('beneficiary_name', 'account_name', 'branch_name', 'bank_address', 'account_number', 'amount_to_transfer', 'beneficiary_email', 'beneficiary_phone_number', 'bank_swift_code', 'transfer_pin' ) 
 
 class PortfolioUpdateForm(forms.ModelForm):
     class Meta:

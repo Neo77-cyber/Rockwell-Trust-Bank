@@ -29,11 +29,17 @@
     <div class="sidebar">
       <div class="sidebar-in-container">
         <div class="logo">
-          
+         
           <h2>Rockwell Trust Bank</h2>
         </div>
         <nav>
           <ul>
+            <!-- <li><a href="./index.html" class="nav-link" data-content="home">Home</a></li> -->
+            <!-- <li>
+              <a href="#" class="nav-link" data-content="dashboard"
+                ><i class="fa-solid fa-house"></i>Dashboard</a
+              >
+            </li> -->
             <li>
               <a href="{% url 'portfolio' %}" class="nav-link" data-content="dashboard">
                 <i class="fa-solid fa-house"></i>Dashboard
@@ -48,21 +54,21 @@
               <a href="{% url 'createprofile' %}" class="nav-link" data-content="profile"><i class="fa-solid fa-user"></i>Create Profile</a>
             </li>
             {% endif %}
-
             <li>
               <li>
                   <a href="{% url 'transfer' %}" class="nav-link" data-content="transfer"><i class="fa-solid fa-paper-plane"></i>Transfer</a>
                 </li>
             <li>
-                <a href="{% url 'FAQ' %}" class="nav-link" data-content="help-and-support"><i class="fa-solid fa-question"></i>Support</a>
-              </li>
-                
-                <li>
+              <a href="{% url 'FAQ' %}" class="nav-link" data-content="help-and-support"><i class="fa-solid fa-question"></i>Support</a>
+            </li>
+            <li>
               <a href="{% url 'logout' %}" class="nav-link" data-content="logout"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
             </li>
           </ul>
         </nav>
-        
+        <div class="sidebar-footer">
+          <p>&copy;  All Rights Reserved. Rockwell Trust Bank</p>
+        </div>
         <div>
           <div class="wave-1"></div>
           <div class="wave-1"></div>
@@ -195,49 +201,43 @@
             </div>
             {% endfor %}
           </div>
-        </div>
 
-        </div>
-
-        <div id="profile" class="content-section hidden">
-          <div class="profile-card">
-            <div class="profile-picture">
-              <img
-          src="{%static 'images/WhatsApp Image 2024-01-13 at 22.33.21.jpeg' %}"
-          alt="Company Logo"
-        />
+          <!-- currency rate display -->
+          <div class="exchange-rate-container">
+            <div class="all-transactions">
+              <h3>Exchange Rate | Today</h3>
             </div>
-
-            <div class="profile-info">
-                <div>
-                    <span>First Name:</span>
-                    <span id="first-name">Anna</span>
-                </div>
-               
-                <div>
-                    <span>Surname:</span>
-                    <span id="surname">Beria</span>
-                </div>
-                <div>
-                    <span>Email Address:</span>
-                    <span id="email">ana.beriashvili96@gmail.com</span>
-                </div>
-                <div>
-                    <span>Country:</span>
-                    <span id="country">Georgia</span>
-                </div>
-                <div>
-                    <span>Phone Number:</span>
-                    <span id="phone-number">+995 557 9967</span>
-                </div>
-            </div>
+            <!-- Static transactions -->
+            <table>
+              <thead>
+                <tr>
+                  <th>Currency</th>
+                  <th>Exchange Rate (EUR to Currency)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>EUR (Euro)</td>
+                  <td>{{ rates.EUR }}</td>
+                </tr>
+                <tr>
+                  <td>USD (United States Dollar)</td>
+                  <td>{{ rates.USD }}</td>
+                </tr>
+                <tr>
+                  <td>GBP (British Pound Sterling)</td>
+                  <td>{{ rates.GBP }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
+
         </div>
 
-        <!-- <div id="logout" class="content-section hidden">
-          <h2>Logout</h2>
-          <p>This is the logout content.</p>
-        </div> -->
+       
+
+       
       </main>
     </div>
 

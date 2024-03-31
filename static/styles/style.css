@@ -335,6 +335,9 @@ input:focus {
 }
 
 .track-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: #134341;
   color: #fff;
   padding: 8px 24px;
@@ -343,6 +346,8 @@ input:focus {
   border-bottom-right-radius: 4px;
   cursor: pointer;
   text-wrap: nowrap;
+  text-decoration: none;
+  text-align: center;
 }
 
 .track-btn:hover {
@@ -469,6 +474,7 @@ input:focus {
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: -moz-fit-content;
   width: fit-content;
   margin: 0 auto;
   padding: 20px;
