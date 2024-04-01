@@ -16,30 +16,22 @@
             <div class="wave-1"></div>
           </div>
       <div class="hero-text">
-        <form id="login-form" action="" method="POST">
+        <form id="login-form" action="{% url 'register' %}" method="POST">
           {%csrf_token%}
             <p class="logo">Rockwell Trust Bank</p>
-        <p class="hero-light-text">Please enter your credentials to log in.</p>
+        <p class="hero-light-text">Please enter your credentials Register.</p>
 
           <div class="input-group">
-            <label for="username">Account Number</label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              placeholder="Enter your Account Number"
-              required
-            />
+            <label for="{{ form_name.username.id_for_label }}">Username</label>
+            {{ form_name.username }}
           </div>
           <div class="input-group">
-            <label for="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Enter your password"
-              required
-            />
+            <label for="{{ form_name.password1.id_for_label }}">Password</label>
+            {{ form_name.password1 }}
+          </div>
+          <div class="input-group">
+            <label for="{{ form_name.password2.id_for_label }}">Confirm Password</label>
+            {{ form_name.password2 }}
             <span class="forgot-password">
               <a href="{% url 'home' %}">
                 Forgot your password?
@@ -51,7 +43,7 @@
             <label for="remember">Remember me</label>
           </div> -->
           <div class="input-group">
-            <button type="submit" id="login-button">Log In</button>
+            <button type="submit" id="login-button">Register</button>
           </div>
         </form>
 

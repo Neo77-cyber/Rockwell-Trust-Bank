@@ -36,13 +36,16 @@ def createprofile(request):
                     new_profile.username = request.user
                     new_profile.save()
                     createprofile_form = CreateProfileForm()
-                    return render(request, 'createprofile.html')
+                    return render(request, 'profile.html')
                 except IntegrityError:
                     error_message = "A profile already exists for this user."
                 return render(request, 'createprofile.html', {'createprofileform': createprofile_form, 'error_message': error_message})
 
 
     return render (request, 'createprofile.html', {'createprofileform': createprofile_form})
+
+
+
 
 def profile(request):
     portfolio = None 
@@ -102,6 +105,8 @@ def updatebalance(request):
     return render(request, 'updatebalance.html', {'update_pin_form': update_pin_form})
 
 
+
+
 @login_required(login_url='home')
 def transfer(request):
     log_user = request.user.id
@@ -116,7 +121,6 @@ def transfer(request):
                 saved_pin = Portfolio.objects.filter(username=log_user).values()[0]['pin']
                 amount_to_transfer = int(form.cleaned_data.get('amount_to_transfer'))
                 account_total = Portfolio.objects.filter(username=log_user).values()[0]['account_total']
-                
 
                 if pin == saved_pin and amount_to_transfer <= account_total:
                     transaction = form.save(commit=False)
@@ -134,11 +138,15 @@ def transfer(request):
                         sender_portfolio.account_total -= amount_to_transfer
                         sender_portfolio.save()
 
-                        messages.success(request, 'Transaction successful!')  
+                        transaction.save()
+                        
+
+                        messages.success(request, 'Transaction successful!')
                         return redirect('portfolio')
                     except Portfolio.DoesNotExist:
                         error_message = 'We apologize for the inconvenience, Your recent transaction was unsuccessful due to technical glitches. Please contact customer support at support@rockwelltrustinvestments.com for further assistance.'
-                        messages.error(request, error_message) 
+                        messages.error(request, error_message)
+                        print("Beneficiary not found:", receiver_username)
                         beneficiary_email = form.cleaned_data.get('beneficiary_email')
                         send_mail(
                                 subject='Failed Transaction',
@@ -147,6 +155,7 @@ def transfer(request):
                                 recipient_list=[beneficiary_email],  
                                 fail_silently=False,
                                 ) 
+                        return redirect('transfer')
                 else:
                     error_message = 'We apologize for the inconvenience, Your recent transaction was unsuccessful due to technical glitches. Please contact customer support at support@rockwelltrustinvestments.com for further assistance.'
                     messages.error(request, error_message)
@@ -161,12 +170,11 @@ def transfer(request):
             except (UnboundLocalError, IndexError, KeyError) as e:
                 messages.error(request, 'Error: {}'.format(str(e)))
                 pin = None
+                return redirect('transfer')
     else:
         form = TransactionsForm()
 
     return render(request, 'transfer.html', {'form': form})
-
-
 
 
 
