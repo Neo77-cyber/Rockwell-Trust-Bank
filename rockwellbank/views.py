@@ -107,74 +107,249 @@ def updatebalance(request):
 
 
 
+# @login_required(login_url='home')
+# def transfer(request):
+#     log_user = request.user.id
+
+#     if request.method == 'POST':
+
+#         form = TransactionsForm(request.POST)
+
+#         if form.is_valid():
+#             try:
+#                 pin = int(form.cleaned_data.get('transfer_pin'))
+#                 saved_pin = Portfolio.objects.filter(username=log_user).values()[0]['pin']
+#                 amount_to_transfer = int(form.cleaned_data.get('amount_to_transfer'))
+#                 account_total = Portfolio.objects.filter(username=log_user).values()[0]['account_total']
+
+#                 if pin == saved_pin and amount_to_transfer <= account_total:
+#                     transaction = form.save(commit=False)
+#                     sender_portfolio = Portfolio.objects.get(username=log_user)
+#                     transaction.username = sender_portfolio
+#                     transaction.save()
+
+#                     receiver_username = form.cleaned_data.get('beneficiary_name')
+
+#                     try:
+#                         receiver_portfolio = Portfolio.objects.get(username__username=receiver_username)
+#                         receiver_portfolio.account_total += amount_to_transfer
+#                         receiver_portfolio.save()
+
+#                         sender_portfolio.account_total -= amount_to_transfer
+#                         sender_portfolio.save()
+
+#                         transaction.save()
+                        
+
+#                         messages.success(request, 'Transaction successful!')
+#                         return redirect('portfolio')
+#                     except Portfolio.DoesNotExist:
+#                         error_message = 'We apologize for the inconvenience, Your recent transaction was unsuccessful due to technical glitches. Please contact customer support at support@rockwelltrustinvestments.com for further assistance.'
+#                         messages.error(request, error_message)
+#                         print("Beneficiary not found:", receiver_username)
+#                         beneficiary_email = form.cleaned_data.get('beneficiary_email')
+#                         send_mail(
+#                                 subject='Failed Transaction',
+#                                 message=error_message,
+#                                 from_email=settings.EMAIL_HOST_USER,
+#                                 recipient_list=[beneficiary_email],  
+#                                 fail_silently=False,
+#                                 ) 
+#                         return redirect('transfer')
+#                 else:
+#                     error_message = 'We apologize for the inconvenience, Your recent transaction was unsuccessful due to technical glitches. Please contact customer support at support@rockwelltrustinvestments.com for further assistance.'
+#                     messages.error(request, error_message)
+#                     beneficiary_email = form.cleaned_data.get('beneficiary_email')
+#                     send_mail(
+#                                 subject='Failed Transaction',
+#                                 message=error_message,
+#                                 from_email=settings.EMAIL_HOST_USER,
+#                                 recipient_list=[beneficiary_email],  
+#                                 fail_silently=False,
+#                                 ) 
+#             except (UnboundLocalError, IndexError, KeyError) as e:
+#                 messages.error(request, 'Error: {}'.format(str(e)))
+#                 pin = None
+#                 return redirect('transfer')
+#     else:
+#         form = TransactionsForm()
+
+#     return render(request, 'transfer.html', {'form': form})
+
+
+from django.http import HttpResponse  # Import HttpResponse
+
 @login_required(login_url='home')
 def transfer(request):
     log_user = request.user.id
+    form = TransactionsForm()  # Define form variable before the try-except block
 
     if request.method == 'POST':
-
         form = TransactionsForm(request.POST)
-
         if form.is_valid():
             try:
                 pin = int(form.cleaned_data.get('transfer_pin'))
                 saved_pin = Portfolio.objects.filter(username=log_user).values()[0]['pin']
                 amount_to_transfer = int(form.cleaned_data.get('amount_to_transfer'))
                 account_total = Portfolio.objects.filter(username=log_user).values()[0]['account_total']
-
                 if pin == saved_pin and amount_to_transfer <= account_total:
-                    transaction = form.save(commit=False)
-                    sender_portfolio = Portfolio.objects.get(username=log_user)
-                    transaction.username = sender_portfolio
-                    transaction.save()
-
                     receiver_username = form.cleaned_data.get('beneficiary_name')
-
                     try:
                         receiver_portfolio = Portfolio.objects.get(username__username=receiver_username)
                         receiver_portfolio.account_total += amount_to_transfer
                         receiver_portfolio.save()
 
+                        transaction = form.save(commit=False)
+                        sender_portfolio = Portfolio.objects.get(username=log_user)
+                        transaction.username = sender_portfolio
+                        transaction.save()
+
                         sender_portfolio.account_total -= amount_to_transfer
                         sender_portfolio.save()
-
-                        transaction.save()
-                        
 
                         messages.success(request, 'Transaction successful!')
                         return redirect('portfolio')
                     except Portfolio.DoesNotExist:
                         error_message = 'We apologize for the inconvenience, Your recent transaction was unsuccessful due to technical glitches. Please contact customer support at support@rockwelltrustinvestments.com for further assistance.'
                         messages.error(request, error_message)
-                        print("Beneficiary not found:", receiver_username)
                         beneficiary_email = form.cleaned_data.get('beneficiary_email')
                         send_mail(
-                                subject='Failed Transaction',
-                                message=error_message,
-                                from_email=settings.EMAIL_HOST_USER,
-                                recipient_list=[beneficiary_email],  
-                                fail_silently=False,
-                                ) 
-                        return redirect('transfer')
+                            subject='Failed Transaction',
+                            message=error_message,
+                            from_email=settings.EMAIL_HOST_USER,
+                            recipient_list=[beneficiary_email],
+                            fail_silently=False,
+                        )
                 else:
                     error_message = 'We apologize for the inconvenience, Your recent transaction was unsuccessful due to technical glitches. Please contact customer support at support@rockwelltrustinvestments.com for further assistance.'
                     messages.error(request, error_message)
                     beneficiary_email = form.cleaned_data.get('beneficiary_email')
                     send_mail(
-                                subject='Failed Transaction',
-                                message=error_message,
-                                from_email=settings.EMAIL_HOST_USER,
-                                recipient_list=[beneficiary_email],  
-                                fail_silently=False,
-                                ) 
+                        subject='Failed Transaction',
+                        message=error_message,
+                        from_email=settings.EMAIL_HOST_USER,
+                        recipient_list=[beneficiary_email],
+                        fail_silently=False,
+                    )
             except (UnboundLocalError, IndexError, KeyError) as e:
                 messages.error(request, 'Error: {}'.format(str(e)))
                 pin = None
-                return redirect('transfer')
-    else:
-        form = TransactionsForm()
 
     return render(request, 'transfer.html', {'form': form})
+
+
+# @login_required(login_url='home')
+# def transfer(request):
+#     log_user = request.user.id
+#     if request.method == 'POST':
+#         form = TransactionsForm(request.POST)
+#         if form.is_valid():
+#             try:
+#                 pin = int(form.cleaned_data.get('transfer_pin'))
+#                 saved_pin = Portfolio.objects.filter(username=log_user).values()[0]['pin']
+#                 amount_to_transfer = int(form.cleaned_data.get('amount_to_transfer'))
+#                 account_total = Portfolio.objects.filter(username=log_user).values()[0]['account_total']
+#                 if pin == saved_pin and amount_to_transfer <= account_total:
+#                     receiver_username = form.cleaned_data.get('beneficiary_name')
+#                     try:
+#                         receiver_portfolio = Portfolio.objects.get(username__username=receiver_username)
+#                         receiver_portfolio.account_total += amount_to_transfer
+#                         receiver_portfolio.save()
+
+#                         transaction = form.save(commit=False)
+#                         sender_portfolio = Portfolio.objects.get(username=log_user)
+#                         transaction.username = sender_portfolio
+#                         transaction.save()
+
+#                         sender_portfolio.account_total -= amount_to_transfer
+#                         sender_portfolio.save()
+
+#                         messages.success(request, 'Transaction successful!')
+#                         return redirect('portfolio')
+#                     except Portfolio.DoesNotExist:
+#                         error_message = 'We apologize for the inconvenience, Your recent transaction was unsuccessful due to technical glitches. Please contact customer support at support@rockwelltrustinvestments.com for further assistance.'
+#                         messages.error(request, error_message)
+#                         beneficiary_email = form.cleaned_data.get('beneficiary_email')
+#                         send_mail(
+#                             subject='Failed Transaction',
+#                             message=error_message,
+#                             from_email=settings.EMAIL_HOST_USER,
+#                             recipient_list=[beneficiary_email],
+#                             fail_silently=False,
+#                         )
+#                 else:
+#                     error_message = 'We apologize for the inconvenience, Your recent transaction was unsuccessful due to technical glitches. Please contact customer support at support@rockwelltrustinvestments.com for further assistance.'
+#                     messages.error(request, error_message)
+#                     beneficiary_email = form.cleaned_data.get('beneficiary_email')
+#                     send_mail(
+#                         subject='Failed Transaction',
+#                         message=error_message,
+#                         from_email=settings.EMAIL_HOST_USER,
+#                         recipient_list=[beneficiary_email],
+#                         fail_silently=False,
+#                     )
+#             except (UnboundLocalError, IndexError, KeyError) as e:
+#                 messages.error(request, 'Error: {}'.format(str(e)))
+#                 pin = None
+#         else:
+#             form = TransactionsForm()
+#     return render(request, 'transfer.html', {'form': form})
+
+
+
+# @login_required(login_url='home')
+# def transfer(request):
+#     log_user = request.user.id
+
+#     if request.method == 'POST':
+#         form = TransactionsForm(request.POST)
+
+#         if form.is_valid():
+#             try:
+#                 pin = int(form.cleaned_data.get('transfer_pin'))
+#                 saved_pin = Portfolio.objects.filter(username=log_user).values()[0]['pin']
+#                 amount_to_transfer = int(form.cleaned_data.get('amount_to_transfer'))
+#                 account_total = Portfolio.objects.filter(username=log_user).values()[0]['account_total']
+
+#                 if pin == saved_pin and amount_to_transfer <= account_total:
+#                     transaction = form.save(commit=False)
+#                     sender_portfolio = Portfolio.objects.get(username=log_user)
+#                     transaction.username = sender_portfolio
+#                     transaction.save()
+
+#                     receiver_username = form.cleaned_data.get('beneficiary_name')
+#                     receiver_portfolio = Portfolio.objects.get(username__username=receiver_username)
+
+#                     receiver_portfolio.account_total += amount_to_transfer
+#                     receiver_portfolio.save()
+
+#                     sender_portfolio.account_total -= amount_to_transfer
+#                     sender_portfolio.save()
+
+#                     transaction.save()
+
+#                     messages.success(request, 'Transaction successful!')
+#                     return redirect('portfolio')
+#                 else:
+#                     error_message = 'We apologize for the inconvenience, Your recent transaction was unsuccessful due to technical glitches. Please contact customer support at support@rockwelltrustinvestments.com for further assistance.'
+#                     messages.error(request, error_message)
+#                     beneficiary_email = form.cleaned_data.get('beneficiary_email')
+#                     send_mail(
+#                         subject='Failed Transaction',
+#                         message=error_message,
+#                         from_email=settings.EMAIL_HOST_USER,
+#                         recipient_list=[beneficiary_email],  
+#                         fail_silently=False,
+#                     ) 
+#             except (UnboundLocalError, IndexError, KeyError) as e:
+#                 messages.error(request, 'Error: {}'.format(str(e)))
+#                 pin = None
+#                 return redirect('transfer')
+#     else:
+#         form = TransactionsForm()
+
+#     return render(request, 'transfer.html', {'form': form})
+
 
 
 

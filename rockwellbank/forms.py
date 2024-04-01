@@ -17,7 +17,7 @@ class CreateProfileForm(forms.ModelForm):
 class TransactionsForm(forms.ModelForm):
     class Meta:
         model = Transactions
-        fields = ('beneficiary_name', 'account_name', 'branch_name', 'bank_address', 'account_number', 'amount_to_transfer', 'beneficiary_email', 'beneficiary_phone_number', 'bank_swift_code', 'transfer_pin' ) 
+        fields = ('beneficiary_name', 'account_name', 'branch_name', 'bank_address', 'bank_name', 'amount_to_transfer', 'beneficiary_email', 'beneficiary_phone_number', 'bank_swift_code', 'transfer_pin' ) 
 
 class PortfolioUpdateForm(forms.ModelForm):
     class Meta:
