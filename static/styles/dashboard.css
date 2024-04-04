@@ -182,18 +182,15 @@ header {
   gap: 20px;
 } */
 .dashboard {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 columns on desktop */
-  grid-gap: 4rem; /* adjust the gap between divs as needed */
+  column-count: 2; 
+  column-gap: 2rem; 
+  padding: 1rem;
 }
 
 .dashboard > div {
-  height: fit-content; /* let the height adjust based on content */
+  break-inside: avoid; 
+  margin-bottom: 2rem; 
 }
-
-.grid-container{
-  gap: 20px;
-  }
 
 .content-section {
   display: none;
@@ -205,8 +202,6 @@ header {
 .mobile-header {
   display: none;
 }
-
-
 
 /* card acct balance */
 .card {
@@ -486,6 +481,8 @@ th {
     /* z-index: 1; */
   }
   .dashboard {
+    display: grid;
+    padding: 0;
     grid-template-columns: 1fr; /* 1 column on mobile */
   }
 

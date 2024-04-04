@@ -1,28 +1,49 @@
 /* CSS code for the login design screen */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 
-*{
+* {
   font-family: "Inter", sans-serif;
-padding: 0;
-margin: 0;
-box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 :root {
   --yellow: #ffdc39;
   --white: #ffffff;
   --gray: #e0e0e0;
 }
-body{
-  overflow: hidden !important;
+.login-main-container{
+  background-color: rgba(20, 70, 67, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 100vh;
 }
-.logo{
+.login-container{
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  z-index: 999 !important;
+  background-color: white;
+  border-radius: 10px;
+}
+.logo {
   color: #000;
   font-weight: 700;
   font-size: 24px;
   padding-bottom: 20px;
 }
+
+.login-hero {
+  overflow: hidden !important;
+  height: 100vh;
+  width: 100vw;
+}
+
 .login-hero::before {
+  overflow: hidden !important;
+  height: 100vh;
+  width: 100vw;
   content: "";
   position: absolute;
   top: 0;
@@ -80,7 +101,7 @@ body{
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100%; 
+  height: 100%;
 }
 
 .input-group {
@@ -111,15 +132,15 @@ body{
   height: 2.5rem;
 }
 
-::placeholder{
-  font-size: .9rem;
+::placeholder {
+  font-size: 0.9rem;
 }
 
-.forgot-password{
+.forgot-password {
   text-align: right;
 }
-.forgot-password a{
-  font-size: .7rem !important;
+.forgot-password a {
+  font-size: 0.7rem !important;
   color: black !important;
 }
 
@@ -156,19 +177,18 @@ body{
   opacity: 0.8;
 }
 
-.info-text{
+.info-text {
   color: white;
   text-align: center;
 }
-.info-text a{
+.info-text a {
   color: var(--gray);
   text-decoration: none;
 }
 
 /* Make the login screen responsive for smaller screens */
 @media screen and (max-width: 768px) {
-
-  .hero-text{
+  .hero-text {
     width: 90%;
   }
 
