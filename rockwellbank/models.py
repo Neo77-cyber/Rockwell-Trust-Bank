@@ -55,7 +55,7 @@ class Transactions(models.Model):
     amount_to_transfer = models.IntegerField()
     beneficiary_email = models.EmailField(max_length=200)
     beneficiary_phone_number = models.CharField(max_length=200, blank= True, null = True)
-    bank_swift_code = models.IntegerField()
+    bank_swift_code = models.CharField(max_length=200, blank= True, null = True)
     transfer_pin = models.IntegerField(null=True, blank=True)
     transaction_date = models.DateField(default=timezone.now)
     transaction_category = models.CharField(max_length=200, blank= True, null = True)
