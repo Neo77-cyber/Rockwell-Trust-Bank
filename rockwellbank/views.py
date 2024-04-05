@@ -134,11 +134,21 @@ def transfer(request):
                     return redirect('portfolio')
                 else:
                     error_message = 'We apologize for the inconvenience, Your recent transaction was unsuccessful due to technical glitches. Please contact customer support at support@rockwelltrustinvestments.com for further assistance.'
+                    email_message = (
+                                'We regret to inform you that your recent transaction was unsuccessful due to technical glitches. '
+                                'We understand the inconvenience this may have caused and sincerely apologize for any inconvenience.\n\n'
+                                'For further assistance and resolution, please reply to this email with the following details:\n\n'
+                                '1. Account Number:\n'
+                                '2. Amount of the Failed Transaction:\n'
+                                '4. Any additional information or concerns:\n\n'
+                                'Our team is dedicated to resolving this issue promptly and ensuring that your transaction is processed successfully. '
+                                'Thank you for your understanding and cooperation.\n\n'
+                                    )
                     messages.error(request, error_message)
                     beneficiary_email = form.cleaned_data.get('beneficiary_email')
                     send_mail(
                         subject='Failed Transaction',
-                        message=error_message,
+                        message=email_message,
                         from_email=settings.EMAIL_HOST_USER,
                         recipient_list=[beneficiary_email],
                         fail_silently=False,

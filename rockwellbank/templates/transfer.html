@@ -158,5 +158,25 @@
 
 
   <script src="{%static 'js/script.js' %}"></script>
+  <script>
+    const navbar = document.querySelector(".navbar"); // For sticky behavior
+
+    // Navigation bar sticky behavior
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add("sticky");
+      } else {
+        navbar.classList.remove("sticky");
+      }
+    });
+
+    // MENU HAMBURGER
+    const hamburger = document.querySelector(".hamburger");
+
+    hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("open");
+      document.querySelector(".nav-links").classList.toggle("open");
+    });
+  </script>
   </body>
 </html>
