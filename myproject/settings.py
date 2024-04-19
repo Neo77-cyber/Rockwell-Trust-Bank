@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import dj_database_url
 
+
+
+
+
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,6 +33,8 @@ SECRET_KEY = 'django-insecure-uig^xd^lulg4u#k*fm62x*=6bqk2h^c4ox!c8+0%+m0h#0nmg#
 
 DEBUG = os.environ.get('DEBUG', 'True')=="True"
 
+# DEBUG = True
+
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'rockwell-trust-bank.onrender.com', 'rockwelltrustinvestments.com']
 
 
@@ -42,7 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    'rockwellbank'
+    'rockwellbank',
+    'cloudinary'
 ]
 
 MIDDLEWARE = [
@@ -85,6 +92,14 @@ if not DEBUG:
 	"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
+
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         # Replace this value with your local database's connection string.
+#         default='postgres://rockwell_db_user:UrJawCuY9X654ZnGVYp9iBJWhIEOd03w@dpg-coh4t1ev3ddc73fh9pvg-a.oregon-postgres.render.com/rockwell_db',
+#         conn_max_age=600
+#     )
+# }
 
 else:
 
@@ -135,6 +150,17 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+CLOUDINARY_STORAGE = {
+'CLOUD_NAME': 'dkwatkcl9',
+'API_KEY': '454482742285496',
+'API_SECRET': 'pGvr8vvZ6l8TQ2ASOhVJYoCwj1k',
+}
+
+
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 
 
 # Static files (CSS, JavaScript, Images)
