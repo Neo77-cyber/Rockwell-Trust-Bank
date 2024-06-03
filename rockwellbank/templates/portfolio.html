@@ -15,6 +15,11 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   />
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static './favicon_io/apple-touch-icon.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static './favicon_io/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static './favicon_io/favicon-16x16.png' %}">
+  <link rel="manifest" href="{% static './favicon_io/site.webmanifest' %}">
   </head>
   <body>
     <div class="dashboard-container">
@@ -56,10 +61,10 @@
             {% endif %}
             <li>
               <li>
-                  <a href="{% url 'transfer' %}" class="nav-link" data-content="transfer"><i class="fa-solid fa-paper-plane"></i>Transfer</a>
+                  <a href="{% url 'transfer' %}" class="nav-link" data-content="transfer"><i class="fa-solid fa-paper-plane"></i>Funds Transfer</a>
                 </li>
             <li>
-              <a href="{% url 'FAQ' %}" class="nav-link" data-content="help-and-support"><i class="fa-solid fa-question"></i>Support</a>
+              <a href="{% url 'FAQ' %}" class="nav-link" data-content="help-and-support"><i class="fa-solid fa-question"></i>Get Help</a>
             </li>
             <li>
               <a href="{% url 'logout' %}" class="nav-link" data-content="logout"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
