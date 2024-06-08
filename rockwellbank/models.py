@@ -14,6 +14,8 @@ class Portfolio(models.Model):
     first_name = models.CharField(max_length=500, blank= True, null = True)
     last_name = models.CharField(max_length=200, blank= True, null = True)
     expiry_date = models.CharField(max_length=200, blank= True, null = True)
+    loan_balance = models.CharField(max_length=200, blank= True, null = True)
+    checkings = models.CharField(max_length=200, blank= True, null = True)
     city = models.CharField(max_length=200, blank= True, null = True)
     Country = models.CharField(max_length=200, blank= True, null = True)
     state = models.CharField(max_length=200, blank= True, null = True)

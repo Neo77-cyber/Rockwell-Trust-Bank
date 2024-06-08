@@ -554,3 +554,10 @@ th {
 .profile-info span:first-child {
   font-weight: bold;
 }
+
+.loan{
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  padding: .2rem 0;
+}

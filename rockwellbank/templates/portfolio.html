@@ -132,8 +132,31 @@
                 <p>Name</p>
                 <p id="card-holder-name">{{userinfo.first_name}} {{userinfo.last_name}}</p>
               </div>
-              {% endfor %}
+              
             </div>
+             <!-- loan balance -->
+             <div class="transaction-container">
+              <div class="loan-list">
+                <!-- Static transactions -->
+                <div class="loan">
+                  <div class="transaction-info">
+                    <p class="loan-balance">
+                      Loan Balance
+                    </p>
+                  </div>
+                  <span class="transaction-amount income">${{userinfo.loan_balance|intcomma}}</span>
+                </div>
+                <div class="loan">
+                  <div class="transaction-info">
+                    <p class="loan-balance">
+                      Checkings
+                    </p>
+                  </div>
+                  <span class="transaction-amount income">${{userinfo.checkings|intcomma}}</span>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
             <!-- transaction history -->
           <div class="transaction-container">
             <div class="all-transactions">
